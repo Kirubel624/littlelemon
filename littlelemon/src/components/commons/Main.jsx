@@ -1,5 +1,4 @@
 import React from 'react'
-import '../../styles/main.css'
 import Button from '../common/Button'
 import Card from '../common/Card'
 import TestimonyCard from '../common/TestimonyCard'
@@ -9,7 +8,7 @@ const Main = () => {
   return (
     <>
       <main>
-    <section className='bg-[#495E57] w-[100vw] flex justify-between -red-900 items-center px-[20vw] py-10'>
+    <section className='bg-[#495E57] w-full flex justify-between -red-900 items-center px-[20vw] py-10'>
      <div className='lg:w-[25vw] w-full  -green-900 flex flex-col justify-center item'>
         <h1 className=' font-markazi text-[3.25rem] leading-[0.8] text-[#F4CE14]'>Little Lemon</h1>
         <p className='text-white font-markazi text-3xl pb-4'>Chicago</p>
