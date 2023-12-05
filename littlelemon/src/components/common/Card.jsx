@@ -2,26 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Button from './Button'
 
 const Card = ({img,foodName,description}) => {
-  const[size,setSize]=useState(window.innerWidth)
-    const[width,setWidth]=useState("")
 
-  useEffect(()=>{
-    const handleResize=()=>{
-      if(window.innerWidth<=833){
-       setWidth("full")
-      }else if(window.innerWidth>833){
-      setWidth("[250px]")
-      }
-    }
-
-    window.addEventListener('resize',handleResize)
-    return ()=>{
-      window.removeEventListener('resize',handleResize)
-      console.log("cleaned up")
-    }
-  },[size])
-console.log(size,"size")
-console.log(width,"width")
   return (
     <article className={`flex flex-col justify-start item-start mb-8 w-full lg:w-[250px] bg-gray-200 rounded-[16px]`}>
       <img className={`object-cover w-full lg:w-[250px]  h-[224px] rounded-t-xl`} src={img}/>
