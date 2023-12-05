@@ -1,10 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from './Button'
 
 const Card = ({img,foodName,description}) => {
+  const[size,setSize]=useState(window.innerWidth)
+    const[width,setWidth]=useState("")
+
+  useEffect(()=>{
+    const handleResize=()=>{
+      if(window.innerWidth<=833){
+       setWidth("full")
+      }else if(window.innerWidth>833){
+      setWidth("[250px]")
+      }
+    }
+
+    window.addEventListener('resize',handleResize)
+    return ()=>{
+      window.removeEventListener('resize',handleResize)
+      console.log("cleaned up")
+    }
+  },[size])
+console.log(size,"size")
+console.log(width,"width")
   return (
-    <article className='flex flex-col justify-start item-start w-[250px] bg-gray-200 rounded-[16px]'>
-      <img className=' object-cover w-[250px] h-[224px] rounded-t-xl' src={img}/>
+    <article className={`flex flex-col justify-start item-start mb-8 w-${width} bg-gray-200 rounded-[16px]`}>
+      <img className={`object-cover w-${width}  h-[224px] rounded-t-xl`} src={img}/>
       <p className='p-4'>{foodName}</p>
       <p className='p-4'>{description}</p>
       <Button style="bg-none" buttonText={<p className='flex p-4'> Order a delivery<svg className='ml-6' width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
