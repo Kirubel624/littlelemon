@@ -2,7 +2,7 @@ import React from 'react'
 import Logo from "../../assets/Logo.svg"
 const Footer = () => {
   return (
-    <footer className='flex flex-wrap font-karla justify-between items-star lg:items-start px-[20vw] pt-24 pb-10'>
+    <footer className='w-full flex flex-wrap font-karla justify-between items-star lg:items-start px-[20vw] pb-10'>
      <aside className=' lg:w-[20vw] w-full'>
      <img className='pb-4' src={Logo}/>
       <p>We are a family owned Mediterranean restaurant,focused on traditional recipes with a  modern twist</p>

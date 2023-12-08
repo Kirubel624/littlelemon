@@ -1,3 +1,3 @@
-import Booking from "./Booking";
+import BookingPage from "./BookingPage";
 
-export default Booking
+export default BookingPage
