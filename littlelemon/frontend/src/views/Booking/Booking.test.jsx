@@ -1,6 +1,6 @@
 import {fireEvent, getByLabelText, getByText, render, screen} from '@testing-library/react'
 
-import BookingForm from './BookingForm'
+import BookingForm, { validateGuestInput } from './BookingForm'
 import { updateTimesReducer, initializeTimes } from './BookingPage';  // Import the function from your BookingPage
 import HomePage from '../Home/index'
 import { describe, expect, it, vi, afterEach, beforeEach } from 'vitest'
@@ -43,13 +43,39 @@ it('Returns the same value that is provided in the state', () => {
 it("User can make reservations",()=>{
     const handleReservation=jest.fn()
     const { getByLabelText, getByText } = render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]} handleReservation={handleReservation}/>);
-  
+   const date='2023-12-08'
     const dateInput = getByLabelText('Choose date');
     const timeSelect = getByLabelText('Choose time');
     const submitButton = getByText('Make Your reservation');
-    fireEvent.change(dateInput, { target: { value: '2023-12-08' } });
+    const form = screen.getByTestId('booking-form');
+    fireEvent.change(dateInput, { target: { value: date } });
     fireEvent.change(timeSelect, { target: { value: '17:00' } });
-    fireEvent.click(submitButton);
+    // fireEvent.click(submitButton);
+    fireEvent.submit(form);
     expect(handleReservation).toHaveBeenCalled()
+})
+
+it('It has HTML5 validation',()=>{
+
+    render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]}/>)
+
+const selectInputs= screen.getAllByRole("select")
+const inputs=screen.getAllByRole('input')
+const dateInput=screen.getByTestId("res-date")
+selectInputs.forEach((selectInput)=>{
+    expect(selectInput).toHaveAttribute("required")
+
+})
+inputs.forEach((input)=>{
+    expect(input).toHaveAttribute("required")
+})
+expect(dateInput).toHaveAttribute("required")
+})
+
+it('validation function test',()=>{
+    const resultFail=validateGuestInput(0)
+    const resultPass=validateGuestInput(1)
+    expect(resultFail).toBe(false)
+    expect(resultPass).toBe(true)
 })
 })
