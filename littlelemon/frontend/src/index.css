@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Markazi";
+    src: url("./assets/MarkaziR.ttf");
+  }
+  @font-face{
+    font-family: "Karla";
+    src:url("./assets/Karla-Regular.ttf")
+  }
