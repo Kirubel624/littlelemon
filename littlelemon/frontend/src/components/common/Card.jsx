@@ -1,20 +1,41 @@
-import React from 'react';
-import Button from './Button';
-
-const Card = ({ imgURL, foodName, description }) => {
+import React from "react";
+import Button from "./Button";
+import Delivery from "../../assets/Delivery.svg";
+const Card = ({ imgURL, foodName, description, price }) => {
   return (
-    <article className={`flex flex-col justify-start item-start mb-8 w-full lg:w-[250px] bg-gray-200 rounded-[16px] font-karla`} aria-label={`Card for ${foodName}`}>
-      <img className={`object-cover w-full lg:w-[250px] h-[224px] rounded-t-xl`} src={imgURL} alt={foodName} />
-      <p className='p-4' aria-label={`${foodName} name`}>{foodName}</p>
-      <p className='p-4' aria-label={`${foodName} description`}>{description}</p>
-      <Button style="bg-none" buttonText={<p className='flex p-4' aria-label={`Order a delivery for ${foodName}`}>
-        Order a delivery
-        <svg className='ml-6' width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20.8713 14.3416C20.4781 14.755 20.0365 15.1133 19.5596 15.4114C19.3596 15.5364 19.1536 15.6507 18.9421 15.754C18.9426 15.754 18.943 15.7539 18.9435 15.7539C19.4731 15.7539 19.9024 16.1832 19.9024 16.7128C19.9024 17.2423 19.4731 17.6716 18.9435 17.6716C18.4139 17.6716 17.9847 17.2423 17.9847 16.7128C17.9847 16.4522 18.089 16.2163 18.2576 16.0435C18.0361 16.1231 17.8102 16.1914 17.5809 16.2477C16.9779 16.3957 16.4546 16.4428 15.8997 16.4428C15.7415 18.2496 17.1654 19.7692 18.9436 19.7692C20.6315 19.7692 22 18.4008 22 16.7128C21.9999 15.7559 21.5598 14.9021 20.8713 14.3416Z" fill="black" />
-          <path d="M8.64907 16.4428C6.93918 16.4428 7.21834 16.4428 6.52483 16.4428C6.54997 16.5285 6.56402 16.619 6.56402 16.7128C6.56402 17.2424 6.13472 17.6717 5.60518 17.6717C5.07563 17.6717 4.64634 17.2424 4.64634 16.7128C4.64634 16.619 4.66039 16.5285 4.68557 16.4428C4.01264 16.4428 3.56679 16.4428 2.56137 16.4428C2.55355 16.5318 2.54883 16.6218 2.54883 16.7128C2.54883 18.4008 3.91725 19.7692 5.60522 19.7692C7.2932 19.7692 8.66161 18.4008 8.66161 16.7128C8.66157 16.6218 8.65684 16.5318 8.64907 16.4428Z" fill="black" />
-          <path d="M21.1404 10.7783C21.0335 10.229 20.6738 9.76224 20.1698 9.51891C18.7491 8.83322 17.6154 7.6161 17.0493 5.9542C17.3006 6.19371 17.6133 6.36936 17.9616 6.45436C18.2063 6.51408 18.4421 6.32829 18.4421 6.07679C18.4421 5.76179 18.4421 3.23688 18.4421 2.90774C18.4421 2.65586 18.2054 2.47066 17.9616 2.53017C17.7958 2.57065 17.638 2.63158 17.491 2.71017C16.9415 3.00403 16.5443 3.54479 16.4464 4.18412L16.2001 3.46121C16.1078 3.19133 15.86 2.99449 15.5661 2.97511C15.5479 2.96673 15.5296 2.95844 15.5105 2.95144C15.3086 2.87723 13.8745 2.35005 13.6745 2.27657C13.2899 2.13508 12.8632 2.33243 12.7218 2.71717C12.5803 3.10191 12.7776 3.52846 13.1624 3.66991C13.4523 3.77643 14.4906 4.15816 14.8133 4.27676C14.9218 8.36018 14.9193 8.08303 14.9078 8.31262C14.807 10.3312 13.5333 12.0264 11.7661 12.7486V12.4161C11.7661 11.1875 11.0984 10.1154 10.1066 9.54096C10.6529 9.42039 11.1241 9.10087 11.4408 8.66208C11.707 8.29328 11.8644 7.84061 11.8644 7.35098C11.8644 7.13652 11.6905 6.96267 11.476 6.96267H5.84698C5.63252 6.96267 5.45867 7.13657 5.45867 7.35098C5.45867 8.01777 5.45867 8.44212 5.45867 9.10611C2.6487 9.27606 0.372617 11.4246 0.00613872 14.1771C-0.048818 14.5898 0.272157 14.9584 0.6911 14.9584H11.7661C13.3143 14.9584 14.8041 14.9584 15.9723 14.9584C17.4599 14.9584 18.8814 14.3293 19.8808 13.2274L20.713 12.3098C21.0889 11.8952 21.2474 11.3277 21.1404 10.7783Z" fill="black" />
-        </svg>
-      </p>} />
+    <article
+      className={`flex flex-col justify-start item-start mb-8 w-full lg:w-[230px] boder boder-red-900
+     bg-gray-200 rounded-[16px] font-karla hover:cursor-pointer`}
+      aria-label={`Card for ${foodName}`}>
+      <div className="borer rounded-t-xl borer-red-800 overflow-clip">
+        <img
+          className={`object-cover duration-300 delay=150 transition-all ease-in hover:scale-110 w-full lg:w-[250px] h-[224px] `}
+          src={imgURL}
+          alt={foodName}
+        />
+      </div>
+      <span className="flex items-center justify-between">
+        {" "}
+        <p className="p-4" aria-label={`${foodName} name`}>
+          {foodName}
+        </p>
+        <p className="p-4 text-[#EE9972]">{price}</p>
+      </span>
+      <p className="p-4" aria-label={`${foodName} description`}>
+        {description}
+      </p>
+
+      <Button
+        style="bg-none"
+        buttonText={
+          <p
+            className="flex p-4"
+            aria-label={`Order a delivery for ${foodName}`}>
+            Order a delivery
+            <img className="ml-6" src={Delivery} />
+          </p>
+        }
+      />
     </article>
   );
 };

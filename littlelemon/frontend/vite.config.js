@@ -3,10 +3,13 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from 'tailwindcss'
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),tailwindcss()],
+  plugins: [react(), tailwindcss()],
   test: {
-    environment: 'happy-dom',
+    environment: "happy-dom",
     globals: true,
-    setupFiles: './tests/setup.js',
-   },
-})
+    setupFiles: "./tests/setup.js",
+  },
+  optimizeDeps: {
+    exclude: ["js-big-decimal"],
+  },
+});

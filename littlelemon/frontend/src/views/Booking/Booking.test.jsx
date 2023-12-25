@@ -1,4 +1,4 @@
-import {fireEvent, getByLabelText, getByText, render, screen} from '@testing-library/react'
+import {fireEvent, getByLabelText, getByTestId, getByText, render, screen} from '@testing-library/react'
 
 import BookingForm, { validateGuestInput } from './BookingForm'
 import { updateTimesReducer, initializeTimes } from './BookingPage';  // Import the function from your BookingPage
@@ -42,10 +42,10 @@ it('Returns the same value that is provided in the state', () => {
   });
 it("User can make reservations",()=>{
     const handleReservation=jest.fn()
-    const { getByLabelText, getByText } = render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]} handleReservation={handleReservation}/>);
+    const { getByTestId, getByText } = render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]} handleReservation={handleReservation}/>);
    const date='2023-12-08'
-    const dateInput = getByLabelText('Choose date');
-    const timeSelect = getByLabelText('Choose time');
+    const dateInput = getByTestId('res-date');
+    const timeSelect = getByTestId('res-time');
     const submitButton = getByText('Make Your reservation');
     const form = screen.getByTestId('booking-form');
     fireEvent.change(dateInput, { target: { value: date } });

@@ -13,7 +13,7 @@ const CallToAction = () => {
           <Link className='bg-[#F4CE14] text-black px-4 py-2 rounded text-center' to="/booking" aria-label="Reserve a table">Reserve a table</Link>
         </div>
         <div className='static  -red-900 flex justify-center items-'>
-          <img className='lg:block hidden w-[300px] rounded-xl object-cover h-[335px] absolute right-[20vw] top-[10rem]' src="https://res.cloudinary.com/dvqawl4nw/image/upload/v1701453328/pbygrd9a1r6puekc3x2y.jpg" alt="Little Lemon Restaurant" aria-hidden="true" />
+          <img className='lg:block hidden w-[300px] rounded-xl object-cover h-[335px] absolute right-[20vw] top-[8rem]' src="https://res.cloudinary.com/dvqawl4nw/image/upload/v1701453328/pbygrd9a1r6puekc3x2y.jpg" alt="Little Lemon Restaurant" aria-hidden="true" />
         </div>
       </section>
     </>

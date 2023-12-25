@@ -11,13 +11,16 @@
     "test": "vitest"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.0.1",
     "antd": "^5.11.5",
     "axios": "^1.6.2",
     "happy-dom": "^12.10.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.1",
-    "react-test-renderer": "^18.2.0"
+    "react-spinners": "^0.13.8",
+    "react-test-renderer": "^18.2.0",
+    "redux-persist": "^6.0.0"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.1.5",

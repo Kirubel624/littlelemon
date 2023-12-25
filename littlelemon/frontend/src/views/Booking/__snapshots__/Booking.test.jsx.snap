@@ -40,7 +40,7 @@ exports[`Booking Form > Will create a snapshot 1`] = `
       <img
         alt="Little Lemon Restaurant"
         aria-hidden="true"
-        className="lg:block hidden w-[300px] rounded-xl object-cover h-[335px] absolute right-[20vw] top-[10rem]"
+        className="lg:block hidden w-[300px] rounded-xl object-cover h-[335px] absolute right-[20vw] top-[8rem]"
         src="https://res.cloudinary.com/dvqawl4nw/image/upload/v1701453328/pbygrd9a1r6puekc3x2y.jpg"
       />
     </div>
