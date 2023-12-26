@@ -6,17 +6,15 @@ import { BrowserRouter } from 'react-router-dom'
 import { persistor, store } from './redux/store.js'
 import { Provider } from "react-redux";
 import { PersistGate } from 'redux-persist/integration/react'
-import {AuthProvider} from './context/authContext.jsx'
+
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {/* <AuthProvider> */}
           <BrowserRouter>
             <App />
           </BrowserRouter>
-        {/* </AuthProvider> */}
       </PersistGate>
     </Provider>
   </React.StrictMode>

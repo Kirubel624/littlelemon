@@ -28,29 +28,29 @@ const BookingPage = () => {
     e.preventDefault();
     console.log(bookingInfo,"inside handleReservation booking info")
   
-    fetch('http://localhost:8000/api/v1/reserve',{
-      method: 'POST',
-      headers:{
-        'Content-Type': 'application/json'
+    fetch("https://littlelemondateapi.onrender.com/api/v1/reserve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify(bookingInfo)
-    }).then((res)=>{
-      console.log(res,"res in handle reservation")
-      if(res.status===409&&availableTimes.length!==0){
-        message.info('Time has been booked for this date!')
-
-      }else if(res.status===201){
+      body: JSON.stringify(bookingInfo),
+    }).then((res) => {
+      console.log(res, "res in handle reservation");
+      if (res.status === 409 && availableTimes.length !== 0) {
+        message.info("Time has been booked for this date!");
+      } else if (res.status === 201) {
         // message.success("Reservation successful!")
-         navigate(`/bookingConfirmation?date=${bookingInfo.reservationDate}&occassion=${bookingInfo.occassion}&time=${bookingInfo.reservationTime}`)
-
-        
-      }else if(availableTimes.length===0){
-        message.info('All times for this date have been booked!. Try another date')
-
+        navigate(
+          `/bookingConfirmation?date=${bookingInfo.reservationDate}&occassion=${bookingInfo.occassion}&time=${bookingInfo.reservationTime}`
+        );
+      } else if (availableTimes.length === 0) {
+        message.info(
+          "All times for this date have been booked!. Try another date"
+        );
       }
-      res.json()
-       updateAvailableTimes(date)
-    })
+      res.json();
+      updateAvailableTimes(date);
+    });
     // setDate("");
     // setTime("");
     // setNumberOfGuests("");
@@ -61,7 +61,9 @@ const BookingPage = () => {
 
   const fetchData = async (date) => {
     try {
-      const response = await fetch(`http://localhost:8000/api/v1/reserve/getAvailableDates?date=${date}`);
+      const response = await fetch(
+        `https://littlelemondateapi.onrender.com/api/v1/reserve/getAvailableDates?date=${date}`
+      );
       const data = await response.json();
       console.log(data.data.availableTimes);
         setTimes(data.data.availableTimes);
