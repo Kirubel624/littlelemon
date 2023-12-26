@@ -31,11 +31,5 @@ export default {
     },
   },
   plugins: [],
-//   purge: {
-//     enabled: true,
-//     content: [
-//         './**/*.html'
-//     ]
-// }
 }
 

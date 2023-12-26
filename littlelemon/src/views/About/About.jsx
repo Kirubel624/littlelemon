@@ -1,4 +1,3 @@
-// AboutPage.jsx
 import React from "react";
 import { Card, Space, Image, Row, Col } from "antd";
 import MarioAndAdrianone from "../../assets/MarioandAdrianA.jpg";

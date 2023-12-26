@@ -55,12 +55,9 @@ const AuthenticationPage = () => {
         message.error("Login failed.", 3);
       });
   };
-  // //console.log(userLogin,"***************")
   const onFinishRegistration = (values) => {
     dispatch(registerAsync(values))
       .then((action) => {
-        // //console.log("Register Async Action Payload: ", action.payload);
-        // //console.log("Server Response Status Code: ", action.payload.status);
 
         if (registerAsync.fulfilled.match(action)) {
           // Handle successful registration

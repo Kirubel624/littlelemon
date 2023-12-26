@@ -39,7 +39,6 @@ const BookingPage = () => {
       if (res.status === 409 && availableTimes.length !== 0) {
         message.info("Time has been booked for this date!");
       } else if (res.status === 201) {
-        // message.success("Reservation successful!")
         navigate(
           `/bookingConfirmation?date=${bookingInfo.reservationDate}&occassion=${bookingInfo.occassion}&time=${bookingInfo.reservationTime}`
         );
@@ -51,11 +50,6 @@ const BookingPage = () => {
       res.json();
       updateAvailableTimes(date);
     });
-    // setDate("");
-    // setTime("");
-    // setNumberOfGuests("");
-    // setOccasion("");
-
   };
 
 

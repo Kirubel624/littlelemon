@@ -10,16 +10,8 @@ export const login = async (email, password) => {
   }
 };
 export const register = async (username, email, password) => {
-  // Perform the API call to register the user
   try {
-    // Make the API request and handle the response
     const response = await api.post("/register", { username, email, password  });
-
-    // Check if the registration was successful
-   
-
-      //console.log("registration returned data", response);
-      // saveData(response.data);
       return response;
   
   } catch (error) {

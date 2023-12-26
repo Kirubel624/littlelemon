@@ -32,7 +32,6 @@ setTime(availableTimesT[0])
 console.log(availableTimesT.length)
 },[availableTimesT])
 const userID = localStorage.getItem("userID");
-  // console.log("Booking information", bookingInfo);
   const memoizedBookingInfo = useMemo(
     () => ({
       userID: userID,

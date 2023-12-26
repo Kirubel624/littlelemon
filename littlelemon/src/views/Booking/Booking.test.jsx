@@ -10,13 +10,11 @@ import * as utils from './BookingPage'
 
 describe("Booking Form",()=>{
     test("Static text test",()=>{
-    // const initializeTimes = jest.fn()
     render(<BookingForm availableTimesT={["17:00","18:00","19:00","20:00","21:00"]}/>)
 
     const textElement=screen.getByText(/Make Your reservation/i)
 console.log(textElement)
     expect(textElement).toBeInTheDocument()
-    // expect(initializeTimes).toEqual(["17:00","18:00","19:00","20:00","21:00"])
 }
 )
 
@@ -50,7 +48,6 @@ it("User can make reservations",()=>{
     const form = screen.getByTestId('booking-form');
     fireEvent.change(dateInput, { target: { value: date } });
     fireEvent.change(timeSelect, { target: { value: '17:00' } });
-    // fireEvent.click(submitButton);
     fireEvent.submit(form);
     expect(handleReservation).toHaveBeenCalled()
 })

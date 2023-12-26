@@ -16,7 +16,6 @@ const refresh=()=>{
  api
    .get(`/reserve/${id}`, { cancelToken: cancelToken.token })
    .then((res) => {
-     //  const data=res
      setBookings(res.data.data);
      setDate(date)
      updateAvailableTimes(date)
