@@ -65,8 +65,10 @@ const AuthenticationPage = () => {
         if (registerAsync.fulfilled.match(action)) {
           // Handle successful registration
           message.success("Registration successful. You can login now!", 2);
- dispatch(loginAsync(values));
-          navigate('/booking');
+ dispatch(loginAsync(values)).then((res)=>{
+     navigate('/booking');
+ });
+       
 
           setActiveKey("login");
 

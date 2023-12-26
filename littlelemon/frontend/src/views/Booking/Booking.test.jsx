@@ -11,7 +11,7 @@ import * as utils from './BookingPage'
 describe("Booking Form",()=>{
     test("Static text test",()=>{
     // const initializeTimes = jest.fn()
-    render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]}/>)
+    render(<BookingForm availableTimesT={["17:00","18:00","19:00","20:00","21:00"]}/>)
 
     const textElement=screen.getByText(/Make Your reservation/i)
 console.log(textElement)
@@ -42,7 +42,7 @@ it('Returns the same value that is provided in the state', () => {
   });
 it("User can make reservations",()=>{
     const handleReservation=jest.fn()
-    const { getByTestId, getByText } = render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]} handleReservation={handleReservation}/>);
+    const { getByTestId, getByText } = render(<BookingForm availableTimesT={["17:00","18:00","19:00","20:00","21:00"]} handleReservation={handleReservation}/>);
    const date='2023-12-08'
     const dateInput = getByTestId('res-date');
     const timeSelect = getByTestId('res-time');
@@ -57,7 +57,7 @@ it("User can make reservations",()=>{
 
 it('It has HTML5 validation',()=>{
 
-    render(<BookingForm availableTimes={["17:00","18:00","19:00","20:00","21:00"]}/>)
+    render(<BookingForm availableTimesT={["17:00","18:00","19:00","20:00","21:00"]}/>)
 
 const selectInputs= screen.getAllByRole("select")
 const inputs=screen.getAllByRole('input')

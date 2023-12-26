@@ -4,11 +4,15 @@ import api from '../../utils/api'
 import { Card, Empty, Table, message } from 'antd'
 import Button from '../../components/common/Button'
 import ReservationIcon from "../../assets/reservation.svg";
+import { BounceLoader } from "react-spinners";
+
 const Bookings = ({updateAvailableTimes, date, setDate}) => {
   const [bookings, setBookings] = useState([])
+  const [loading, setLoading] = useState(true)
 const id = localStorage.getItem("userID");
 const refresh=()=>{
     const cancelToken=axios.CancelToken.source()
+    setLoading(true)
  api
    .get(`/reserve/${id}`, { cancelToken: cancelToken.token })
    .then((res) => {
@@ -16,6 +20,7 @@ const refresh=()=>{
      setBookings(res.data.data);
      setDate(date)
      updateAvailableTimes(date)
+     setLoading(false)
      console.log(res);
    })
    .catch((err) => {
@@ -68,9 +73,11 @@ api.post("/reserve/cancelReservation",{id}).then((res)=>{
   message.error("Error occured while trying to cancel reservation. Try again")
 });
   }
+
+  const Content=()=>{}
   return (
-    <div className="flex justify-items-start">
-      {bookings.length > 0 ? (
+    <div className="flex flex-wrap justify-items-start">
+      {bookings.length > 0 && !loading ? (
         bookings.map((reservation, index) => (
           <Card key={index} className="mb-4 mr-4">
             <p>
@@ -92,7 +99,7 @@ api.post("/reserve/cancelReservation",{id}).then((res)=>{
             />
           </Card>
         ))
-      ) : (
+      ) : !loading && bookings.length === 0 ? (
         <>
           <Empty
             image="https://res.cloudinary.com/dvqawl4nw/image/upload/v1703533684/qv82rxkrugxql8arhwr3.svg"
@@ -102,12 +109,23 @@ api.post("/reserve/cancelReservation",{id}).then((res)=>{
             className="flex flex-col justify-center items-center w-full py-6"
             description={
               <>
-               It looks like you haven't made any reservations yet.
+                It looks like you haven't made any reservations yet.
                 <br />
                 Why not plan a delightful dining experience now?
               </>
             }></Empty>
         </>
+      ) : (
+        <div className="boder flex flex-col boder-red-900 p-20 w-full justify-center items-center">
+          <BounceLoader
+            color="#F4CE14"
+            loading={setLoading}
+            size={50}
+            aria-label="Loading Spinner"
+            data-testid="loader"
+          />
+          Loading...
+        </div>
       )}
     </div>
   );
