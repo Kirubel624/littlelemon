@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import BookingForm from './BookingForm';
-import {message} from 'antd'
+import {Tabs, message} from 'antd'
 import { useNavigate } from 'react-router-dom';
+import Bookings from './Bookings';
 export const updateTimesReducer = (state, action) => {
   switch (action?.type) {
     case "UPDATE_TIMES":
@@ -18,9 +19,11 @@ const BookingPage = () => {
   const navigate=useNavigate()
   const dateNow=new Date().toISOString().split('T')[0]
   const [times, setTimes] = useState([]);
+  const [activeKey, setActiveKey] = useState("reserve");
 
   const [date, setDate] = useState(dateNow);
   const [availableTimes, dispatch] = useReducer(updateTimesReducer,[],initializeTimes);
+  const[timeData, setTimeData] = useState()
   const handleReservation = (e,bookingInfo) => {
     e.preventDefault();
     console.log(bookingInfo,"inside handleReservation booking info")
@@ -62,7 +65,9 @@ const BookingPage = () => {
       const data = await response.json();
       console.log(data.data.availableTimes);
         setTimes(data.data.availableTimes);
-      
+          setTimeData(data.data);
+        console.log(data.data,"data data data&&&&&&&&&&&&&&");
+    
     } catch (err) {
       console.log(err);
     }
@@ -72,7 +77,7 @@ const BookingPage = () => {
     setDate(date);
     fetchData(date);
   };
-
+console.log(timeData,"&&&&&&&&&&&&tiem data")
   useEffect(() => {
     fetchData(date);
   }, [date]);
@@ -80,13 +85,50 @@ const BookingPage = () => {
   useEffect(() => {
     dispatch({ type: "UPDATE_TIMES", payload: { updateTimes: times } });
 initializeTimes(times)
+setTimeData(timeData)
   }, [times]);
 console.log(initializeTimes(times),"function initialize times")
-  return (
-    <>
-      <BookingForm handleReservation={handleReservation} availableTimes={availableTimes} updateAvailableTimes={updateAvailableTimes} date={date} setDate={setDate} />
-    </>
-  );
+  const handleTabChange = (key) => {
+    setActiveKey(key);
+  };
+ const booking = [
+   {
+     key: "reservations",
+     label: "Reservations",
+
+     children: (
+       <Bookings
+         date={date}
+         setDate={setDate}
+         availableTimesT={availableTimes}
+         updateAvailableTimes={updateAvailableTimes}
+       />
+     ),
+   },
+   {
+     key: "reserve",
+     label: "Reserve",
+     children: (
+       <BookingForm
+         handleReservation={handleReservation}
+         availableTimesT={availableTimes}
+         timeData={timeData}
+         updateAvailableTimes={updateAvailableTimes}
+         date={date}
+         setDate={setDate}
+       />
+     ),
+   },
+ ];
+return (
+  <>
+    <Tabs
+      className="w-full mt-24 pl-10"
+      items={booking}
+      activeKey={activeKey}
+      onChange={handleTabChange}></Tabs>
+  </>
+);
 };
 
 export default BookingPage;

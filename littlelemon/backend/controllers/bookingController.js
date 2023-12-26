@@ -149,41 +149,69 @@ function formatTime(minutes) {
   const minutesPart = minutes % 60;
   return `${String(hours).padStart(2, '0')}:${String(minutesPart).padStart(2, '0')}`;
 }
-const cancelReservation = async (req, res, next) => {
-  const { date, time } = req.body;
 
+const getBookings=async(req,res,next)=>{
+const {id}=req.params
+console.log("inside bookings")
+const Reservations=await ReservationInformation.find({userID:id}).exec()
+
+res.status(200).json({
+  status:'Success',
+  data:Reservations
+})
+
+}
+
+const cancelReservation = async (req, res, next) => {
+  const { id } = req.body;
+  const reservationId=id
   try {
+    // Find the reservation information by ID
+    const reservation = await ReservationInformation.findById(reservationId);
+
+    if (!reservation) {
+      return res.status(404).json({
+        status: "error",
+        error: "Reservation not found",
+      });
+    }
+
+    const { reservationDate, reservationTime } = reservation;
+
+    // Remove the reservation information
+    await ReservationInformation.findByIdAndDelete(reservationId);
+
     // Find the document for the selected date
-    const result = await AvailableDates.findOne({ date });
+    const result = await AvailableDates.findOne({ date: reservationDate });
 
     if (result) {
       // Filter out the canceled time from the available times
       const updatedAvailableTimes = result.availableTimes.filter(
-        (availableTime) => availableTime.time !== time
+        (availableTime) => availableTime.time !== reservationTime
       );
 
       // Update the document with the modified available times
       const updatedResult = await AvailableDates.findOneAndUpdate(
-        { date },
+        { date: reservationDate },
         { availableTimes: updatedAvailableTimes },
         { new: true }
       );
 
       res.status(200).json({
-        status: 'success',
-        data: updatedResult.availableTimes.map(time => time.time),
+        status: "success",
+        data: updatedResult.availableTimes.map((time) => time.time),
       });
     } else {
       res.status(404).json({
-        status: 'error',
-        error: 'Date not found',
+        status: "error",
+        error: "Date not found",
       });
     }
   } catch (error) {
-    console.error('Error canceling reservation:', error);
+    console.error("Error canceling reservation:", error);
     res.status(500).json({
-      status: 'error',
-      error: 'Internal Server Error',
+      status: "error",
+      error: "Internal Server Error",
     });
   }
 };
@@ -191,5 +219,6 @@ const cancelReservation = async (req, res, next) => {
 module.exports ={
     reserveTable,
     getAvailableDates,
-    cancelReservation
+    cancelReservation,
+    getBookings
 }

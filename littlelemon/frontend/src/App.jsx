@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import './App.css'
 import Homepage from './views/Home'
 import Booking from './views/Booking'
-import { Link, Route, Routes, useLocation } from 'react-router-dom'
+import { Link, Route, Routes, useLocation, useNavigate } from 'react-router-dom'
 import Header from './components/commons/Header'
 import Footer from './components/commons/Footer'
 import PrivateRoutes from './utils/ProtectedRoutes'
@@ -11,6 +11,7 @@ import { Modal, Result } from 'antd'
 import AboutPage from './views/About'
 import AuthenticationPage from './views/Auth/Authentication'
 import ProtectedRoutes from './utils/ProtectedRoutes'
+import { useSelector } from 'react-redux'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -25,6 +26,18 @@ function App() {
       setIsAuthOpen(true)
     }
   },[location])
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+const navigate = useNavigate();
+
+useEffect(() => {
+  if (!isLoggedIn) {
+    // Perform any additional actions upon logout
+    // For example, redirect the user to the login page
+    navigate("/login");
+  }
+}, [isLoggedIn, navigate]);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
@@ -35,11 +48,11 @@ function App() {
           </Route>
           <Route element={<Homepage />} path="/" />
           <Route element={<AboutPage />} path="/about" />
-          <Route element={
-         
+         <Route element={
+
           <AuthenticationPage />
         
-          } path="/login" />
+          } path={`${!isLoggedIn?'/login':'/'}`} />
           <Route element={<ProtectedRoutes/>}>
        <Route element={<Booking />} path="/booking" />
           <Route element={<ConfirmedBooking />} path="/bookingConfirmation" /></Route>

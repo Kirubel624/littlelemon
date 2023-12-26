@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Form, Input, Card, Tabs, message } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { loginAsync, registerAsync } from "../../redux/reducers/authReducer";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Button from "../../components/common/Button";
 import { MoonLoader } from "react-spinners";
 
@@ -19,10 +19,10 @@ const AuthenticationPage = () => {
   const [formL] = Form.useForm();
   const [formR] = Form.useForm();
 
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.auth);
-  const isRegister = useSelector((state) => state.auth.isRegistered);
 
   // Add an effect to update userLogin when userRegister changes
 
@@ -32,8 +32,9 @@ const AuthenticationPage = () => {
       .then((action) => {
         if (loginAsync.fulfilled.match(action)) {
           message.success("Login successful!", 2);
-
+           
           setUserLogin({ email: "", password: "" });
+                    navigate("/booking");
           formL.resetFields(); // Reset the login form
         } else if (loginAsync.rejected.match(action)) {
           // Handle registration error here
@@ -65,7 +66,10 @@ const AuthenticationPage = () => {
           // Handle successful registration
           message.success("Registration successful. You can login now!", 2);
  dispatch(loginAsync(values));
+          navigate('/booking');
+
           setActiveKey("login");
+
           setUserLogin((prevVal) => ({
             ...prevVal,
             email: values.email,
@@ -148,7 +152,7 @@ const AuthenticationPage = () => {
                   <p className="px-4">Login</p>
                 </div>
               }
-              style="bg-[#996CF1] text-white p-2 rounded hover-bg-[#a885ed]"
+              style="bg-[#F4CE14] text-black p-2 rounded hover-bg-[#f9e999]"
             />
           </Form>
         </div>
@@ -217,7 +221,7 @@ const AuthenticationPage = () => {
                   <p className="px-4">Register</p>
                 </div>
               }
-              style="bg-[#996CF1] text-white p-2 rounded hover-bg-[#a885ed]"
+              style="bg-[#F4CE14] text-black p-2 rounded hover-bg-[#f9e999]"
             />
           </Form>
         </div>
