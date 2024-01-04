@@ -10,7 +10,6 @@ import ConfirmedBooking from './views/Booking/ConfirmedBooking'
 import { Modal, Result } from 'antd'
 import AboutPage from './views/About'
 import AuthenticationPage from './views/Auth/Authentication'
-import ProtectedRoutes from './utils/ProtectedRoutes'
 import { useSelector } from 'react-redux'
 
 function App() {
@@ -29,14 +28,14 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
 const navigate = useNavigate();
-
+const conditions=location.pathname !== "/"&&location.pathname !=="/about"&&location.pathname !=="/menu"
 useEffect(() => {
-  if (!isLoggedIn) {
+  if (!isLoggedIn && conditions) {
     // Perform any additional actions upon logout
     // For example, redirect the user to the login page
     navigate("/login");
   }
-}, [isLoggedIn, navigate]);
+}, [isLoggedIn, navigate, location.pathname]);
 
   return (
     <div className="flex flex-col min-h-screen">
@@ -44,18 +43,15 @@ useEffect(() => {
       <div className="flex-grow">
         <Routes>
           <Route element={<PrivateRoutes />}>
-            <Route element="" path="/orderonline" />
+            <Route element={<Booking />} path="/booking" />
+            <Route element={<ConfirmedBooking />} path="/bookingConfirmation" />
           </Route>
           <Route element={<Homepage />} path="/" />
           <Route element={<AboutPage />} path="/about" />
-         <Route element={
-
-          <AuthenticationPage />
-        
-          } path={`${!isLoggedIn?'/login':'/'}`} />
-          <Route element={<ProtectedRoutes/>}>
-       <Route element={<Booking />} path="/booking" />
-          <Route element={<ConfirmedBooking />} path="/bookingConfirmation" /></Route>
+          <Route
+            element={<AuthenticationPage />}
+            path={`${!isLoggedIn ? "/login" : "/"}`}
+          />
           <Route
             element={
               <div className="pt-24">
