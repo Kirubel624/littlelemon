@@ -11,7 +11,7 @@ const ConfirmedBooking = () => {
    const occasion = queryParams.get('occassion');
    const date = queryParams.get('date');
    const time = queryParams.get('time');
-   console.log(date)
+   //console.log(date)
   return (
     <div className='pt-24'>
       <Result

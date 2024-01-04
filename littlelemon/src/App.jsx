@@ -19,7 +19,7 @@ function App() {
     setIsAuthOpen(false)
   }
   const location=useLocation()
-  console.log(location,"%%%%%locaiton")
+  //console.log(location,"%%%%%locaiton")
   useEffect(()=>{
     if (location.pathname === "/login") {
       setIsAuthOpen(true);

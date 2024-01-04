@@ -20,7 +20,7 @@ const refresh=()=>{
      setDate(date)
      updateAvailableTimes(date)
      setLoading(false)
-     console.log(res);
+     //console.log(res);
    })
    .catch((err) => {
      if (axios.isCancel(err)) {

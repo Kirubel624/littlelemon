@@ -26,7 +26,7 @@ const BookingPage = () => {
   const[timeData, setTimeData] = useState()
   const handleReservation = (e,bookingInfo) => {
     e.preventDefault();
-    console.log(bookingInfo,"inside handleReservation booking info")
+    //console.log(bookingInfo,"inside handleReservation booking info")
   
     fetch("https://littlelemondateapi.onrender.com/api/v1/reserve", {
       method: "POST",
@@ -35,7 +35,7 @@ const BookingPage = () => {
       },
       body: JSON.stringify(bookingInfo),
     }).then((res) => {
-      console.log(res, "res in handle reservation");
+      //console.log(res, "res in handle reservation");
       if (res.status === 409 && availableTimes.length !== 0) {
         message.info("Time has been booked for this date!");
       } else if (res.status === 201) {
@@ -59,13 +59,13 @@ const BookingPage = () => {
         `https://littlelemondateapi.onrender.com/api/v1/reserve/getAvailableDates?date=${date}`
       );
       const data = await response.json();
-      console.log(data.data.availableTimes);
+      //console.log(data.data.availableTimes);
         setTimes(data.data.availableTimes);
           setTimeData(data.data);
-        console.log(data.data,"data data data&&&&&&&&&&&&&&");
+        //console.log(data.data,"data data data&&&&&&&&&&&&&&");
     
     } catch (err) {
-      console.log(err);
+      //console.log(err);
     }
   };
 
@@ -73,7 +73,7 @@ const BookingPage = () => {
     setDate(date);
     fetchData(date);
   };
-console.log(timeData,"&&&&&&&&&&&&tiem data")
+//console.log(timeData,"&&&&&&&&&&&&tiem data")
   useEffect(() => {
     fetchData(date);
   }, [date]);
@@ -83,7 +83,7 @@ console.log(timeData,"&&&&&&&&&&&&tiem data")
 initializeTimes(times)
 setTimeData(timeData)
   }, [times]);
-console.log(initializeTimes(times),"function initialize times")
+//console.log(initializeTimes(times),"function initialize times")
   const handleTabChange = (key) => {
     setActiveKey(key);
   };

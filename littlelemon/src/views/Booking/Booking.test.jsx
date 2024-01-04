@@ -13,7 +13,7 @@ describe("Booking Form",()=>{
     render(<BookingForm availableTimesT={["17:00","18:00","19:00","20:00","21:00"]}/>)
 
     const textElement=screen.getByText(/Make Your reservation/i)
-console.log(textElement)
+//console.log(textElement)
     expect(textElement).toBeInTheDocument()
 }
 )

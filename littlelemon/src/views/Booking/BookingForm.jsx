@@ -22,14 +22,14 @@ const BookingForm = ({ handleReservation, availableTimesT,refersh, timeData, upd
     numberOfGuests: "1",
     occassion: "Anniversary",
   });
-console.log(timeData,"time data(((((((((((((((((")
+//console.log(timeData,"time data(((((((((((((((((")
 
  
 
 
 useEffect(()=>{
 setTime(availableTimesT[0])
-console.log(availableTimesT.length)
+//console.log(availableTimesT.length)
 },[availableTimesT])
 const userID = localStorage.getItem("userID");
   const memoizedBookingInfo = useMemo(
@@ -49,7 +49,7 @@ const userID = localStorage.getItem("userID");
       setDate(today);
     }
     setBookingInfo(memoizedBookingInfo);
-    console.log(memoizedBookingInfo);
+    //console.log(memoizedBookingInfo);
   }, [date, setDate, memoizedBookingInfo]);
 validateGuestInput(numberOfGuests)
 const columns = [
