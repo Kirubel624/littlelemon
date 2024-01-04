@@ -125,11 +125,7 @@ const AuthenticationPage = () => {
                 {
                   required: true,
                   message: "Password is required",
-                },
-                {
-                  min: 8,
-                  message: "Password must be 8 characters long",
-                },
+                }
               ]}>
               <Input.Password
                 placeholder="Password"
@@ -214,7 +210,7 @@ const AuthenticationPage = () => {
                       loading={loadingM}
                       size={20}
                       aria-label="Loading Spinner"
-                      color="#FFFFFF"
+                      color="#000000"
                     />
                   )}
                   <p className="px-4">Register</p>
@@ -240,7 +236,7 @@ const AuthenticationPage = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center justify-center my-10 boder boder-red-900 h-[80vh]">
+    <div className="flex flex-col items-center justify-center my-10 boder boder-red-900 h-[80vh] md:mx-0 mx-10">
       <div className="w-full min-w-[40vw] flex flex-col items-center max-w-sm">
         <h2 className="text-xl text-black italic font-light text-center py-4">
           Register! Be apart of the little lemon family

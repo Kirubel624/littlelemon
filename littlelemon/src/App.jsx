@@ -21,8 +21,11 @@ function App() {
   const location=useLocation()
   console.log(location,"%%%%%locaiton")
   useEffect(()=>{
-    if(location.pathname==='/login'){
-      setIsAuthOpen(true)
+    if (location.pathname === "/login") {
+      setIsAuthOpen(true);
+    } else {
+      // Scroll to the top when the route changes
+      window.scrollTo(0, 0);
     }
   },[location])
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
